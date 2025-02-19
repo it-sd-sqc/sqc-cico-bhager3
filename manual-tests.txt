@@ -68,4 +68,8 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 2. Enter abcd into the field.
 
 ## Expected results
-* Nothing is entered into the field and the field remains empty.
+* Nothing is entered into the field, the field remains empty,
+there is a beep, and a red border surrounds the text field.
+
+
+

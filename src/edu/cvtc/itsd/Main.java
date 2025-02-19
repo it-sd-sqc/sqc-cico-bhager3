@@ -7,8 +7,11 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.TimerTask;
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.*;
+
+import static java.awt.Color.RED;
 
 // CiCo application's primary class ///////////////////////////////////////////
 public class Main {
@@ -53,11 +56,28 @@ public class Main {
     public void replace(FilterBypass fb, int offset, int lengthToDelete, String stringToAdd, AttributeSet attr)
         throws BadLocationException
     {
-      if (fb.getDocument() != null) {
+      int length = fb.getDocument().getLength();
+      int newLength = length;
+
+      if (stringToAdd != null) {
+        newLength += stringToAdd.length();
+      }
+
+      if (newLength <= MAX_LENGTH && stringToAdd.chars().allMatch(c -> Character.isDigit(c))) {
         super.replace(fb, offset, lengthToDelete, stringToAdd, attr);
+        if (newLength == MAX_LENGTH) {
+
+          Border inner = BorderFactory.createLineBorder(Color.GREEN, 3);
+          Border outer = BorderFactory.createLineBorder(Color.BLACK, 1);
+          Border combined = BorderFactory.createCompoundBorder(inner, outer);
+          fieldNumber.setBorder(combined);
+        }
       }
       else {
         Toolkit.getDefaultToolkit().beep();
+        fieldNumber.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+
+        new Timer(1500, e -> fieldNumber.setBorder(BorderFactory.createEmptyBorder())).start();
       }
     }
   }
