@@ -71,5 +71,18 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 * Nothing is entered into the field, the field remains empty,
 there is a beep, and a red border surrounds the text field.
 
+# Module 5:  Ticket 501 - Add a next button, but keep timeout
 
+## Test Steps
+1. Build and run CiCo.
+2. Enter valid card number (00000000) and press "Update"
+3. Press the "Next" button
 
+## Expected results
+The main screen appears, and the next user can enter their card number or swipe their card.
+
+4. Enter valid card number (00000000) and press "Update"
+
+## Expected results
+The status screen loads and then times out and then returns to the main screen so the next user
+can enter their card number or swipe their card.
